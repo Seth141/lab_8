@@ -3,6 +3,7 @@
 #include "TopDownShmupPlayerController.h"
 #include "TopDownShmup.h"
 #include "Blueprint/AIBlueprintHelperLibrary.h"
+#include "Math/Vector.h"
 
 ATopDownShmupPlayerController::ATopDownShmupPlayerController()
 {
@@ -13,6 +14,8 @@ ATopDownShmupPlayerController::ATopDownShmupPlayerController()
 void ATopDownShmupPlayerController::PlayerTick(float DeltaTime)
 {
 	Super::PlayerTick(DeltaTime);
+
+	UpdateMouseLook();
 
 	// keep updating the destination every tick while desired
 	if (bMoveToMouseCursor)
@@ -90,6 +93,18 @@ void ATopDownShmupPlayerController::UpdateMouseLook() {
 		FHitResult Hit;
 		GetHitResultUnderCursor(ECC_Visibility, false, Hit);
 		if (Hit.bBlockingHit) {
+			FVector VectorA = Pawn->GetActorLocation();
+			FVector VectorB = Hit.ImpactPoint;
+			FVector VectorC = VectorB - VectorA;
+
+			VectorC.Z = 0.0f;
+
+			VectorC.Normalize();
+
+			FRotator hitResultRotator = VectorC.Rotation();
+
+			Pawn->SetActorRotation(hitResultRotator);
+
 			/*a. Construct a new FVector that goes FROM Pawn->GetActorLocation() TO
 			Hit.ImpactPoint. Remember that this means vector subtraction.
 			b. Set the z-component of this vector to 0.0f. This is because we only care about 
