@@ -105,14 +105,7 @@ void ATopDownShmupPlayerController::UpdateMouseLook() {
 
 			Pawn->SetActorRotation(hitResultRotator);
 
-			/*a. Construct a new FVector that goes FROM Pawn->GetActorLocation() TO
-			Hit.ImpactPoint. Remember that this means vector subtraction.
-			b. Set the z-component of this vector to 0.0f. This is because we only care about 
-			rotation on the xy-plane.
-			c. Normalize this vector (FVector has a Normalize member function – a reference 
-			with all the FVector member functions is here)
-			d. Convert this vector to an FRotator using the Rotation member function
-			e. Call Pawn->SetActorRotation with this new rotator passed into it*/
+
 		}
 	}
 }
