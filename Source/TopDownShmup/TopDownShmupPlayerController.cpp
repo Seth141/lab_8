@@ -130,7 +130,7 @@ void ATopDownShmupPlayerController::OnSetDestinationReleased()
 	bMoveToMouseCursor = false;
 }
 
-//All move functions here:
+//All WASD move functions here:
 
 void ATopDownShmupPlayerController::MoveForward(float Value)
 {

@@ -6,32 +6,30 @@
 // Sets default values
 AWeapon::AWeapon()
 {
-    // Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-    PrimaryActorTick.bCanEverTick = true;
-    WeaponMesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("WeaponMesh"));
-    RootComponent = WeaponMesh;
+ 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+	PrimaryActorTick.bCanEverTick = true;
 
 }
 
-void AWeapon::OnStartFire() {
-
+void AWeapon::OnStartFire(){
+    
 }
 
-
-void AWeapon::OnStopFire() {
-
+void AWeapon::OnStopFire(){
+    
 }
 
 // Called when the game starts or when spawned
 void AWeapon::BeginPlay()
 {
-    Super::BeginPlay();
-
+	Super::BeginPlay();
+	
 }
 
 // Called every frame
 void AWeapon::Tick(float DeltaTime)
 {
-    Super::Tick(DeltaTime);
+	Super::Tick(DeltaTime);
 
 }
+CreateDefaultSubobject()
