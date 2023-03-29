@@ -13,5 +13,6 @@ UCLASS()
 class TOPDOWNSHMUP_API AAIEnemyController : public AAIController
 {
 	GENERATED_BODY()
+    
 	
 };
