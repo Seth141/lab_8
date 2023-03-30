@@ -19,13 +19,13 @@ class ATopDownShmupCharacter : public ACharacter
 	class USpringArmComponent* CameraBoom;
     
     //working on this:
-    UPROPERTY(EditAnywhere, Category = Weapon)
+    UPROPERTY(EditAnywhere, Category=Weapon)
     TSubclassOf<AWeapon> WeaponClass;
 
     
-    
 public:
 	ATopDownShmupCharacter();
+    virtual void BeginPlay() override;
 
 	/** Returns TopDownCameraComponent subobject **/
 	FORCEINLINE class UCameraComponent* GetTopDownCameraComponent() const { return TopDownCameraComponent; }
@@ -34,6 +34,7 @@ public:
     
 private:
     AWeapon* MyWeapon;
+    UWorld* World;
     
 };
 
