@@ -33,6 +33,7 @@ public:
 	FORCEINLINE class USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
     
 private:
+ 
     AWeapon* MyWeapon;
     UWorld* World;
     
