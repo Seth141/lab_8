@@ -24,6 +24,7 @@ void ATopDownShmupPlayerController::PlayerTick(float DeltaTime)
 	}
 }
 
+
 void ATopDownShmupPlayerController::SetupInputComponent()
 {
 	// set up gameplay key bindings
@@ -35,9 +36,7 @@ void ATopDownShmupPlayerController::SetupInputComponent()
         &ATopDownShmupPlayerController::MoveRight);
     
 
-	InputComponent->BindAction("SetDestination", IE_Pressed, this, &ATopDownShmupPlayerController::OnSetDestinationPressed);
-	InputComponent->BindAction("SetDestination", IE_Released, this, &ATopDownShmupPlayerController::OnSetDestinationReleased);
-
+    
 	// support touch devices 
 	InputComponent->BindTouch(EInputEvent::IE_Pressed, this, &ATopDownShmupPlayerController::MoveToTouchLocation);
 	InputComponent->BindTouch(EInputEvent::IE_Repeat, this, &ATopDownShmupPlayerController::MoveToTouchLocation);
@@ -57,6 +56,7 @@ void ATopDownShmupPlayerController::MoveToMouseCursor()
 	}
 }
 
+
  
 void ATopDownShmupPlayerController::MoveToTouchLocation(const ETouchIndex::Type FingerIndex, const FVector Location)
 {
@@ -72,6 +72,8 @@ void ATopDownShmupPlayerController::MoveToTouchLocation(const ETouchIndex::Type 
 	}
 }
 
+
+
 void ATopDownShmupPlayerController::SetNewMoveDestination(const FVector DestLocation)
 {
 	APawn* const Pawn = GetPawn();
@@ -86,6 +88,7 @@ void ATopDownShmupPlayerController::SetNewMoveDestination(const FVector DestLoca
 		}
 	}
 }
+
 
 void ATopDownShmupPlayerController::UpdateMouseLook() {
 	APawn* const Pawn = GetPawn();
@@ -110,7 +113,7 @@ void ATopDownShmupPlayerController::UpdateMouseLook() {
 	}
 }
 
-
+/*
 void ATopDownShmupPlayerController::OnSetDestinationPressed()
 {
 	// set flag to keep updating destination until released
@@ -122,6 +125,7 @@ void ATopDownShmupPlayerController::OnSetDestinationReleased()
 	// clear flag to indicate we should stop updating the destination
 	bMoveToMouseCursor = false;
 }
+*/
 
 //All move functions here:
 
@@ -147,4 +151,13 @@ void ATopDownShmupPlayerController::MoveRight(float Value)
             Pawn->AddMovementInput(FVector(0.0f, 1.0f, 0.0f), Value);
         }
     }
+}
+
+void ATopDownShmupPlayerController::OnStartFire(){
+    
+}
+
+
+void ATopDownShmupPlayerController::OnStopFire(){
+    
 }

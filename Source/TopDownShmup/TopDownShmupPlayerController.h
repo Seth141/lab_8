@@ -13,6 +13,9 @@ public:
     void MoveRight(float Value);
     void MoveForward(float Value);
 	void UpdateMouseLook();
+    void OnStartFire();
+    void OnStopFire();
+    
 
 protected:
 	/** True if the controlled character should navigate to the mouse cursor. */
