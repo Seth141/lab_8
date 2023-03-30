@@ -12,6 +12,13 @@
 UCLASS()
 class TOPDOWNSHMUP_API AAIDwarfController : public AAIEnemyController
 {
-	GENERATED_BODY()
 	
+	GENERATED_BODY()
+
+
+protected:
+	virtual void OnPossess(APawn* InPawn) override;
+
+	virtual void BeginPlay() override;
+
 };
