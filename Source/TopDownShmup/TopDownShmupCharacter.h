@@ -18,7 +18,7 @@ class ATopDownShmupCharacter : public ACharacter
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 	class USpringArmComponent* CameraBoom;
     
-    //working on this:
+ 
     UPROPERTY(EditAnywhere, Category=Weapon)
     TSubclassOf<AWeapon> WeaponClass;
 
