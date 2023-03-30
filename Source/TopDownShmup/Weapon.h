@@ -21,6 +21,8 @@ public:
     virtual void OnStartFire();
     virtual void OnStopFire();
 
+    APawn* MyPawn;
+
 
     
 
