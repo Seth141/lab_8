@@ -24,6 +24,7 @@ void ATopDownShmupPlayerController::PlayerTick(float DeltaTime)
 	}
 }
 
+
 void ATopDownShmupPlayerController::SetupInputComponent()
 {
 	// set up gameplay key bindings
@@ -35,12 +36,15 @@ void ATopDownShmupPlayerController::SetupInputComponent()
         &ATopDownShmupPlayerController::MoveRight);
     
 
-	InputComponent->BindAction("SetDestination", IE_Pressed, this, &ATopDownShmupPlayerController::OnSetDestinationPressed);
-	InputComponent->BindAction("SetDestination", IE_Released, this, &ATopDownShmupPlayerController::OnSetDestinationReleased);
-
+    
 	// support touch devices 
 	InputComponent->BindTouch(EInputEvent::IE_Pressed, this, &ATopDownShmupPlayerController::MoveToTouchLocation);
 	InputComponent->BindTouch(EInputEvent::IE_Repeat, this, &ATopDownShmupPlayerController::MoveToTouchLocation);
+    
+    //New Fire code:
+    InputComponent->BindAction("Fire", IE_Pressed, this, &ATopDownShmupPlayerController::OnStartFire);
+    InputComponent->BindAction("Fire", IE_Released, this, &ATopDownShmupPlayerController::OnStopFire);
+    
 }
 
 
@@ -57,6 +61,7 @@ void ATopDownShmupPlayerController::MoveToMouseCursor()
 	}
 }
 
+
  
 void ATopDownShmupPlayerController::MoveToTouchLocation(const ETouchIndex::Type FingerIndex, const FVector Location)
 {
@@ -72,6 +77,8 @@ void ATopDownShmupPlayerController::MoveToTouchLocation(const ETouchIndex::Type 
 	}
 }
 
+
+
 void ATopDownShmupPlayerController::SetNewMoveDestination(const FVector DestLocation)
 {
 	APawn* const Pawn = GetPawn();
@@ -86,6 +93,7 @@ void ATopDownShmupPlayerController::SetNewMoveDestination(const FVector DestLoca
 		}
 	}
 }
+
 
 void ATopDownShmupPlayerController::UpdateMouseLook() {
 	APawn* const Pawn = GetPawn();
@@ -105,19 +113,12 @@ void ATopDownShmupPlayerController::UpdateMouseLook() {
 
 			Pawn->SetActorRotation(hitResultRotator);
 
-			/*a. Construct a new FVector that goes FROM Pawn->GetActorLocation() TO
-			Hit.ImpactPoint. Remember that this means vector subtraction.
-			b. Set the z-component of this vector to 0.0f. This is because we only care about 
-			rotation on the xy-plane.
-			c. Normalize this vector (FVector has a Normalize member function – a reference 
-			with all the FVector member functions is here)
-			d. Convert this vector to an FRotator using the Rotation member function
-			e. Call Pawn->SetActorRotation with this new rotator passed into it*/
+
 		}
 	}
 }
 
-
+/*
 void ATopDownShmupPlayerController::OnSetDestinationPressed()
 {
 	// set flag to keep updating destination until released
@@ -129,8 +130,9 @@ void ATopDownShmupPlayerController::OnSetDestinationReleased()
 	// clear flag to indicate we should stop updating the destination
 	bMoveToMouseCursor = false;
 }
+*/
 
-//All WASD move functions here:
+//All move functions here:
 
 void ATopDownShmupPlayerController::MoveForward(float Value)
 {
@@ -155,3 +157,27 @@ void ATopDownShmupPlayerController::MoveRight(float Value)
         }
     }
 }
+
+void ATopDownShmupPlayerController::OnStartFire()
+{
+    APawn* Pawn = GetPawn();
+    if (Pawn)
+    {
+        ATopDownShmupCharacter *MyCharacter = Cast<ATopDownShmupCharacter>(Pawn);
+        MyCharacter->OnStartFire();
+    }
+}
+
+
+void ATopDownShmupPlayerController::OnStopFire()
+{
+    APawn* Pawn = GetPawn();
+    if (Pawn)
+    {
+        ATopDownShmupCharacter *MyCharacter = Cast<ATopDownShmupCharacter>(Pawn);
+        MyCharacter->OnStopFire();
+    }
+}
+    
+
+

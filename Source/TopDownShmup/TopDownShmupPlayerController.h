@@ -1,6 +1,7 @@
 // Copyright 1998-2015 Epic Games, Inc. All Rights Reserved.
 #pragma once
 #include "GameFramework/PlayerController.h"
+#include "TopDownShmupCharacter.h"
 #include "TopDownShmupPlayerController.generated.h"
 
 UCLASS()
@@ -13,6 +14,10 @@ public:
     void MoveRight(float Value);
     void MoveForward(float Value);
 	void UpdateMouseLook();
+    void OnStartFire();
+    void OnStopFire();
+    
+    
 
 protected:
 	/** True if the controlled character should navigate to the mouse cursor. */
@@ -35,6 +40,8 @@ protected:
 	/** Input handlers for SetDestination action. */
 	void OnSetDestinationPressed();
 	void OnSetDestinationReleased();
+
+
 };
 
 

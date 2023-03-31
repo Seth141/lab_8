@@ -3,6 +3,7 @@
 #include "TopDownShmupCharacter.h"
 #include "TopDownShmup.h"
 
+
 ATopDownShmupCharacter::ATopDownShmupCharacter()
 {
 	// Set size for player capsule
@@ -33,3 +34,57 @@ ATopDownShmupCharacter::ATopDownShmupCharacter()
 	TopDownCameraComponent->bUsePawnControlRotation = false; // Camera does not rotate relative to arm
 
 }
+
+//on start fire and on stop fire functions here:
+
+void ATopDownShmupCharacter::OnStartFire(){
+	if (MyWeapon)
+	{
+		MyWeapon->OnStartFire();
+	}
+}
+
+void ATopDownShmupCharacter::OnStopFire(){
+	if (MyWeapon)
+	{
+		MyWeapon->OnStopFire();
+	}
+}
+
+
+void ATopDownShmupCharacter::BeginPlay()
+{
+
+	// Call base class BeginPlay
+	Super::BeginPlay();
+
+	// Spawn the weapon, if one was specified
+	if (WeaponClass)
+	{
+		UWorld* World = GetWorld();
+		if (World)
+		{
+			FActorSpawnParameters SpawnParams;
+			SpawnParams.Owner = this;
+			SpawnParams.Instigator = GetInstigator();
+			// Need to set rotation like this because otherwise gun points down
+			// NOTE: This should probably be a blueprint parameter
+			FRotator Rotation(0.0f, 0.0f, -90.0f);
+			// Spawn the Weapon
+			MyWeapon = World->SpawnActor<AWeapon>(WeaponClass, FVector::ZeroVector,
+				Rotation, SpawnParams);
+			if (MyWeapon)
+			{
+				// This is attached to "WeaponPoint" which is defined in the skeleton
+				// NOTE: This should probably be a blueprint parameter
+				MyWeapon->WeaponMesh->AttachToComponent(GetMesh(),
+					FAttachmentTransformRules(EAttachmentRule::KeepRelative, true), TEXT("WeaponPoint"));
+			}
+		}
+
+
+
+	}
+	MyWeapon->MyPawn = this;
+}
+
