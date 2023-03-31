@@ -14,12 +14,16 @@ AWeapon::AWeapon()
 }
 
 void AWeapon::OnStartFire() {
-
+    GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Blue, FString::Printf(TEXT("AAAAAAAAAAAAAAAAAAAAAAA")));
+    
+    AuC = PlayWeaponSound(FireLoopSound);
 }
 
 
 void AWeapon::OnStopFire() {
+    GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("OOOOOOOOOOOOOOOOOOOOOOO")));
 
+    PlayWeaponSound(FireFinishSound);
 }
 
 // Called when the game starts or when spawned
@@ -34,4 +38,15 @@ void AWeapon::Tick(float DeltaTime)
 {
     Super::Tick(DeltaTime);
 
+}
+
+
+UAudioComponent* AWeapon::PlayWeaponSound(USoundCue* Sound)
+{
+    UAudioComponent* AC = NULL;
+    if (Sound)
+    {
+        AC = UGameplayStatics::SpawnSoundAttached(Sound, RootComponent);
+    }
+    return AC;
 }

@@ -6,6 +6,8 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "Sound/SoundCue.h"
+#include "Kismet/GameplayStatics.h"
 #include "Weapon.generated.h"
 
 UCLASS()
@@ -23,17 +25,23 @@ public:
 
     APawn* MyPawn;
 
+    UPROPERTY(EditDefaultsOnly, Category = Sound)
+        USoundCue* FireLoopSound;
+    UPROPERTY(EditDefaultsOnly, Category = Sound)
+        USoundCue* FireFinishSound;
 
-    
+    UAudioComponent* AuC;
 
 protected:
     // Called when the game starts or when spawned
     virtual void BeginPlay() override;
+    UPROPERTY(Transient)
+        UAudioComponent* FireAC;
+
+    UAudioComponent* PlayWeaponSound(USoundCue* Sound);
 
 public:
     // Called every frame
     virtual void Tick(float DeltaTime) override;
-
-
 
 };

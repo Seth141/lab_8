@@ -38,11 +38,17 @@ ATopDownShmupCharacter::ATopDownShmupCharacter()
 //on start fire and on stop fire functions here:
 
 void ATopDownShmupCharacter::OnStartFire(){
-    //Super::OnStartFire();
+	if (MyWeapon)
+	{
+		MyWeapon->OnStartFire();
+	}
 }
 
 void ATopDownShmupCharacter::OnStopFire(){
-    //Super::OnStopFire();
+	if (MyWeapon)
+	{
+		MyWeapon->OnStopFire();
+	}
 }
 
 
