@@ -18,4 +18,5 @@ What the program currently does:
 - Player follows mouse rotation
 - Player has gun in hands 
 - Weapon's audio starts and stops when user fires 
+- Weapon has a muzzle flash when the gun is fired by user
 
