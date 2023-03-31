@@ -9,6 +9,7 @@
 #include "Sound/SoundCue.h"
 #include "Kismet/GameplayStatics.h"
 #include "Components/AudioComponent.h"
+#include "Particles/ParticleSystemComponent.h"
 #include "Weapon.generated.h"
 
 
@@ -32,13 +33,18 @@ public:
     UPROPERTY(EditDefaultsOnly, Category = Sound)
         USoundCue* FireFinishSound;
 
-    UAudioComponent* AuC;
+
+    UPROPERTY(EditDefaultsOnly, Category = Effects)
+        UParticleSystem* MuzzleFX;
+
 
 protected:
     // Called when the game starts or when spawned
     virtual void BeginPlay() override;
     UPROPERTY(Transient)
         UAudioComponent* FireAC;
+    UPROPERTY(Transient)
+        UParticleSystemComponent* MuzFX;
 
     UAudioComponent* PlayWeaponSound(USoundCue* Sound);
 

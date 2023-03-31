@@ -15,17 +15,17 @@ AWeapon::AWeapon()
 
 void AWeapon::OnStartFire() {
     GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Blue, FString::Printf(TEXT("Pressed")));
-    
     FireAC = PlayWeaponSound(FireLoopSound);
+    MuzFX = UGameplayStatics::SpawnEmitterAttached(MuzzleFX, RootComponent, TEXT("MuzzleFlashSocket"));
+
 }
 
 
 void AWeapon::OnStopFire() {
     GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("Released")));
-
-    
     PlayWeaponSound(FireFinishSound);
     FireAC->Stop();
+    MuzFX->DeactivateSystem();
 }
 
 // Called when the game starts or when spawned
