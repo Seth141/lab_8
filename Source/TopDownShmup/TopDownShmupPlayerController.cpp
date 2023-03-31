@@ -40,6 +40,11 @@ void ATopDownShmupPlayerController::SetupInputComponent()
 	// support touch devices 
 	InputComponent->BindTouch(EInputEvent::IE_Pressed, this, &ATopDownShmupPlayerController::MoveToTouchLocation);
 	InputComponent->BindTouch(EInputEvent::IE_Repeat, this, &ATopDownShmupPlayerController::MoveToTouchLocation);
+    
+    //New Fire code:
+    InputComponent->BindAction("Fire", IE_Pressed, this, &ATopDownShmupPlayerController::OnStartFire);
+    InputComponent->BindAction("Fire", IE_Released, this, &ATopDownShmupPlayerController::OnStopFire);
+    
 }
 
 
@@ -153,11 +158,26 @@ void ATopDownShmupPlayerController::MoveRight(float Value)
     }
 }
 
-void ATopDownShmupPlayerController::OnStartFire(){
-    
+void ATopDownShmupPlayerController::OnStartFire()
+{
+    APawn* Pawn = GetPawn();
+    if (Pawn)
+    {
+        ATopDownShmupCharacter *MyCharacter = Cast<ATopDownShmupCharacter>(Pawn);
+        MyCharacter->OnStartFire();
+    }
 }
 
 
-void ATopDownShmupPlayerController::OnStopFire(){
-    
+void ATopDownShmupPlayerController::OnStopFire()
+{
+    APawn* Pawn = GetPawn();
+    if (Pawn)
+    {
+        ATopDownShmupCharacter *MyCharacter = Cast<ATopDownShmupCharacter>(Pawn);
+        MyCharacter->OnStopFire();
+    }
 }
+    
+
+

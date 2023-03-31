@@ -32,6 +32,9 @@ public:
 	/** Returns CameraBoom subobject **/
 	FORCEINLINE class USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
     
+    virtual void OnStopFire();
+    virtual void OnStartFire();
+    
 private:
  
     AWeapon* MyWeapon;

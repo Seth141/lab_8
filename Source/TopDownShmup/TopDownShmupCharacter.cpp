@@ -35,6 +35,17 @@ ATopDownShmupCharacter::ATopDownShmupCharacter()
 
 }
 
+//on start fire and on stop fire functions here:
+
+void ATopDownShmupCharacter::OnStartFire(){
+    //Super::OnStartFire();
+}
+
+void ATopDownShmupCharacter::OnStopFire(){
+    //Super::OnStopFire();
+}
+
+
 void ATopDownShmupCharacter::BeginPlay()
 {
 
