@@ -17,4 +17,5 @@ What the program currently does:
 - Player can move using the WASD keys
 - Player follows mouse rotation
 - Player has gun in hands 
+- Weapon's audio starts and stops when user fires 
 
