@@ -8,7 +8,9 @@
 #include "GameFramework/Actor.h"
 #include "Sound/SoundCue.h"
 #include "Kismet/GameplayStatics.h"
+#include "Components/AudioComponent.h"
 #include "Weapon.generated.h"
+
 
 UCLASS()
 class TOPDOWNSHMUP_API AWeapon : public AActor

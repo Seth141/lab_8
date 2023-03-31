@@ -14,16 +14,18 @@ AWeapon::AWeapon()
 }
 
 void AWeapon::OnStartFire() {
-    GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Blue, FString::Printf(TEXT("AAAAAAAAAAAAAAAAAAAAAAA")));
+    GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Blue, FString::Printf(TEXT("Pressed")));
     
-    AuC = PlayWeaponSound(FireLoopSound);
+    FireAC = PlayWeaponSound(FireLoopSound);
 }
 
 
 void AWeapon::OnStopFire() {
-    GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("OOOOOOOOOOOOOOOOOOOOOOO")));
+    GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("Released")));
 
+    
     PlayWeaponSound(FireFinishSound);
+    FireAC->Stop();
 }
 
 // Called when the game starts or when spawned
