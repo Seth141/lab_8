@@ -17,5 +17,4 @@ What the program currently does:
 - Player can move using the WASD keys
 - Player follows mouse rotation
 - Player has gun in hands 
-- 
 
